@@ -17,7 +17,7 @@
 	<div id = "columns">
 		<div id= "side">
 		<ul>
-			<li><a href = "http://www....">Home</a></li>
+			<li><a href="http://www.../home">Home</a></li>
 			<li><a href="http://www..../faq">Questions</a></li>
 			<li><a href="http://www..../contact">Contact</a></li>
 		</ul>
@@ -30,6 +30,11 @@
 		</div>
 
 		<div id="main">
+			<% if session[:counter].present? %>
+				<% if session[:counter] >= 5 %>
+					<%= pluralize session[:counter], 'time' %>
+				<% end %>
+			<% end %>
 			<%= yield %>
 		</div>
 	</div>

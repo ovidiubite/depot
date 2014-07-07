@@ -8,7 +8,8 @@ class ProductsControllerTest < ActionController::TestCase
 	description: 'Ha ha ha',
 	image_url:   'acs.jpg',
 	price:	      316.0
-	}	
+	}  	
+  
   end
 
   test "should get index" do
@@ -31,8 +32,11 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should show product" do
+    
+
     get :show, id: @product
     assert_response :success
+
   end
 
   test "should get edit" do
