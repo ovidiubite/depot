@@ -64,9 +64,11 @@ class LineItemsController < ApplicationController
     respond_to do |format|
         if LineItem.find_by_cart_id(@line_item.cart_id).nil? 
           format.html { redirect_to store_index_url }
+          format.js {}
           else
-          format.html { redirect_to :back }
-           format.json { head :no_content }
+          format.html { redirect_to store_index_url }
+          format.js {}
+          format.json { head :no_content }
       end
     end
   end
