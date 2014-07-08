@@ -33,6 +33,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_index_url}
+        format.js { @current_item = @line_item}
         format.json { render action: 'show', status: :created, location: @line_item }
       else
         format.html { render action: 'new' }
@@ -62,9 +63,9 @@ class LineItemsController < ApplicationController
     @line_item.destroy
     respond_to do |format|
         if LineItem.find_by_cart_id(@line_item.cart_id).nil? 
-          format.html { redirect_to store_index_url, notice: "Card empty!" }
+          format.html { redirect_to store_index_url }
           else
-          format.html { redirect_to :back, notice: "Item removed" }
+          format.html { redirect_to :back }
            format.json { head :no_content }
       end
     end
