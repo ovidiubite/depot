@@ -42,6 +42,10 @@ class LineItemsController < ApplicationController
     end
   end
 
+
+
+
+
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
   def update
