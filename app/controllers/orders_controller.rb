@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :authorize
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
@@ -34,7 +35,8 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
-    
+
+    @order.ship_date = DateTime.now + 3
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
@@ -52,6 +54,8 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+  
+
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
